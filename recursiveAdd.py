@@ -1,12 +1,13 @@
-# a function that adds all digits of a number continuously until we get a number greater than 9 
+# a function that adds all digits of a number continuously until we get a single digit
+# This uses the concept of recursion
 
-def recursiveAdd(num, calls):
+def recursiveAdd(num):
     if num < 10: 
-        return [num, calls]
+        return num
     num = str(num) 
     digitSum = 0
     for digit in num:
         digitSum += int(digit)
-    return recursiveAdd(digitSum, calls + 1)
+    return recursiveAdd(digitSum)
         
-print(recursiveAdd(12432463456873456, 1))
+print(recursiveAdd(12432463456873456))
