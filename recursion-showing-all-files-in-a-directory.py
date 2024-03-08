@@ -1,4 +1,4 @@
-# RULES: 
+# RULES:
 # an array is a directory []
 # files are the elements of an array [1, 1, 1, 1, ..., 1]
 # an array inside another array is a subdirectory [1, 1, .., [ 1, 1, ..., 1], 1, 1, 1]

@@ -17,7 +17,7 @@ node_2.next_node = node_3
 node_3.next_node = node_4
 
 class LinkedList:
-    def __init__(self, first_node):
+    def __init__(self, first_node=None):
         self.first_node = first_node
         
     def read(self, index):
@@ -101,4 +101,7 @@ print(list_1.search('linked'))
 list_1.delete(0)
 print([list_1.read(i) for i in range(list_1.size())])
 print(list_1.size())
+
+empty_linked_list = LinkedList() 
+print(empty_linked_list.size())
         
