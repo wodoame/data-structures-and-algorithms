@@ -1,4 +1,7 @@
+import random
+
 arr = [1, 4, 5, 10, 1, 4, 5, 6, 7, 12, 12, 18, 1, 3, 3, 5, 15, 9, 8, 7, 6, 3, 2]
+random.shuffle(arr)
 
 # This version of the function will not work properly for duplicates
 def visualRep(heights: list):
@@ -35,20 +38,23 @@ def visualRep(heights: list):
         print(strings[i])
 def getIndeces(value, array):
     return [i for i, j in enumerate(array) if j == value]
+
+
+        
 # This is the complete version of the function that works even for duplicates
 def visualRepComplete(heights: list):
     heightsCopy = heights.copy()
-    heightsCopy.sort()
-    rowCount = max(heights)
-    colCount = len(heights)
+    heightsCopy.sort() # Enables us to get the next minimum value each time without altering the original array
+    rowCount = max(heights) # height of the image
+    colCount = len(heights) # width of the image
     index = 0 # index of current minimum height
-    excludedPositions = []
-    strings = []
-    indexRecords = {}
-    currentMinHeight = heightsCopy[index]
+    excludedPositions = [] # indeces that should be filled with spaces instead of '#'
+    strings = [] # the collection of strings to be combined in reverse order to generate the image
+    currentMinHeight = heightsCopy[index] 
     previousMinHeight = currentMinHeight
-    strings.append('#' * colCount)
-    newPositions = getIndeces(currentMinHeight, heights)
+      
+    strings.append('#' * colCount) # For the base of the image we fill every column with '#'
+    newPositions = getIndeces(currentMinHeight, heights) # New positions which should be excluded
     excludedPositions.extend(newPositions)
      
     for i in range(1, rowCount): 
@@ -61,7 +67,7 @@ def visualRepComplete(heights: list):
                 result += ' '
             else:
                 result += '#'
-            
+        
         if currentHeight > currentMinHeight: 
             while currentMinHeight == previousMinHeight:
                 index += 1
@@ -76,6 +82,7 @@ def visualRepComplete(heights: list):
         print(strings[i])
 
 
+
 def bubbleSort(arr):
     sorted = False
     sortUntil = len(arr) - 1
@@ -85,7 +92,7 @@ def bubbleSort(arr):
             if arr[i] > arr[i + 1]: 
                 sorted = False
                 arr[i], arr[i + 1] = arr[i + 1], arr[i]
-        visualRep(arr)
+        visualRepComplete(arr)
         print()
         sortUntil -= 1 
     return arr
@@ -114,12 +121,16 @@ def selectionSort(arr):
         arr[beginPassThrough], arr[smallestElementIndex] = arr[smallestElementIndex], arr[beginPassThrough]
         beginPassThrough += 1
         smallestElementIndex = beginPassThrough
-        visualRep(arr)
+        visualRepComplete(arr)
         print()
     return arr
 
 # the sorts have different profiles 
 
 # bubbleSort(arr)
-insertion_sort_2(arr)
+# insertion_sort_2(arr)
 # selectionSort(arr)
+
+
+
+
